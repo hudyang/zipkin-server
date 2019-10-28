@@ -1,0 +1,25 @@
+server:
+  port: ${SERVER_PORT:10011}
+management:
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
+
+
+#注册中心配置============================================================
+eureka:
+  instance:
+    #ip配置
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:${spring.cloud.client.ip-address}}
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+  client:
+    #开启健康检查
+    #    healthcheck:
+    #      enabled: ${CLENT_HEALTHCHECK:true}
+    #心跳连接池 默认2
+    #    heartbeat-executor-thread-pool-size: ${HEARTBEAT_EXECUTOR_POOL_SIZE:2}
+    #服务注册地址
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_LIST:http://188.131.164.129:2221//eureka/}
